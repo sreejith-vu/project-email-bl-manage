@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<title>Searching in Database</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" >
+  <link rel="icon" href="{{ url_for('static', filename='css/favicon.ico') }}" type="image/ico" sizes="16x16"> 
+
+<body>
+<center>
+  <h1>Livestream Manage Blacklisted Emails</h1>
+
+<table class="table">
+  <tr>
+    <th>Email</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+  <tr>
+    <td>{{ email_field }}</td>
+    {% if ( ch1 == 1) %}
+    <td class="bltable">Blacklisted in Workflow/bounces</td>
+    <form action="/removefrom_wb" method="post">
+    <td><center><button class="button" onclick="return confirmation()"><span>Remove</span></button></center></td>
+    </form>
+    {% elif ( ch1 == 0) %} 
+    <td class="nbltable">Not Blacklisted in Workflow/bounces</td>
+    <td> No Action Required</td>
+    {% else %}
+    <td class="alert"> Error in Connection</td>
+    <td class="alert"> Error in Connection</td>
+    <h2 class="alert">{{ ch1 }}</h2>
+    {% endif %}
+  </tr>
+  <tr>
+    <td>{{ email_field }}</td>
+    {% if ( ch2 == 2) %}
+    <td class="bltable">Blacklisted in Mailgun/bounces</td>
+    <form action="/removefrom_mb" method="post">
+    <td><center><button class="button" onclick="return confirmation()"><span>Remove</span></button></center></td>
+    </form>
+    {% elif ( ch2 == 0) %} 
+    <td class="nbltable">Not Blacklisted in Mailgun/bounces</td>
+    <td> No Action Required</td>
+    {% else %}
+    <td class="alert"> Error in Connection</td>
+    <td class="alert"> Error in Connection</td>
+    <h2 class="alert">{{ ch2 }}</h2>
+    {% endif %}
+  </tr>
+  <tr>
+    <td>{{ email_field }}</td>
+    {% if ( ch3 == 3) %}
+    <td class="bltable">Blacklisted in Mailgun/complaints</td>
+    <form action="/removefrom_mc" method="post">
+    <td><center><button class="button" onclick="return confirmation()"><span>Remove</span></button></center></td>
+    </form>
+    {% elif ( ch3 == 0) %} 
+    <td class="nbltable">Not Blacklisted in Mailgun/complaints</td>
+    <td> No Action Required</td>
+    {% else %}
+    <td class="alert"> Error in Connection</td>
+    <td class="alert"> Error in Connection</td>
+    <h2 class="alert">{{ ch3 }}</h2>
+    {% endif %}
+  </tr>
+</table>
+
+<script>
+function confirmation() {
+    var answer = confirm('Remove email from blacklist. \nPlease Confirm ?'); 
+    if (answer != true)
+        return false; 
+}
+</script>
+
+<form action="/main" method="post">
+  <br>
+  <button class="backbutton backbutton2"><span>Check Again</span></button> 
+</form>
+</center>
+</body>
+
+</html>
