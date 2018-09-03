@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<title>Manage Blacklisted Emails</title>
+
+<head>
+  <link rel = "stylesheet" type = "text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="icon" href="{{ url_for('static', filename='css/favicon.ico') }}" type="image/ico" sizes="16x16"> 
+</head>
+
+<body>
+<center>
+  <h1>CMPNY Manage Blacklisted Emails</h1>
+
+<form action="/search" method="POST">
+  <h4>Provide an email address to check for blacklist and remove it</h4>
+  <input type="email" name="email_field" autocomplete="off" style="width: 12%" placeholder="Email Address" oninvalid="alert('Enter Email Address!');" required>
+  <br> 
+  <button class="button"><span>Search </span></button>
+</form>
+
+</center>
+</body>
+
+</html>
